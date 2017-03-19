@@ -1,0 +1,136 @@
+//
+//  pchFile.pch
+//  新浪微博
+//
+//  Created by 李中峰 on 16/1/14.
+//  Copyright © 2016年 李中峰. All rights reserved.
+//
+
+#ifndef pchFile_pch
+#define pchFile_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define kUserDefaults [NSUserDefaults standardUserDefaults]
+
+#define kScreenFrame [UIScreen mainScreen].bounds
+// 屏幕宽度
+#define kScreenWidth kScreenFrame.size.width
+// 屏幕高度
+#define kScreenHeight kScreenFrame.size.height
+
+#define LeeColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define kGlobalColor LeeColor(243,243,243,1.0)
+
+#define iPhone5oriPhone5s ([UIScreen mainScreen].bounds.size.height == 568.0)
+#define iPhone6oriPhone6s ([UIScreen mainScreen].bounds.size.height == 667.0)
+
+#define kFont(a) [UIFont systemFontOfSize:(a)]
+
+// 日志输出
+#ifdef DEBUG
+// 调试状态
+#define MyLog(...) NSLog(__VA_ARGS__)
+#else
+// 发布状态
+#define MyLog(...)
+#endif
+
+#define LeeColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define kMainVC [MainVC sharedMainVC]
+
+#define kTabBar [TabBar sharedTabBar]
+
+#define kApplication [UIApplication sharedApplication]
+
+#define kKeyWindow kApplication.keyWindow
+
+// 微博开发者信息
+#define kOauthorize @"https://api.weibo.com/oauth2/authorize?"
+//#define kAppKey @"330870392"
+//#define kAppSecret @"e16a726a1d958841e85254138a2057dc"
+//#define kAppKey @"1816876941"
+//#define kAppSecret @"adcaacd534bde6dfa8492ea241731410"
+#define kAppKey @"3708639734"
+#define kAppSecret @"2b4eb0fcd22753b12475f5d0baa64876"
+
+#define kRedirectURI @"https://www.baidu.com"
+
+#define kOauthAccess @"https://api.weibo.com/oauth2/access_token"
+#define kStatuses_Home_Timeline @"https://api.weibo.com/2/statuses/home_timeline.json"
+#define kStatuses_Comments_Show @"https://api.weibo.com/2/comments/show.json"
+#define kStatuses_Reposts_Show @"https://api.weibo.com/2/statuses/repost_timeline.json"
+#define kSingle_Statuses_Show @"https://api.weibo.com/2/statuses/show.json"
+#define kFriendships_followers @"https://api.weibo.com/2/friendships/followers.json"
+#define kFriendships_friends @"https://api.weibo.com/2/friendships/friends.json"
+#define kShort_url_expand @"https://api.weibo.com/2/short_url/expand.json"
+
+// 用户帐号存储路径
+#define kFile [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"account.data"]
+
+#define kAccountTool [AccountTool sharedAccountTool]
+#define kAccessToken kAccountTool.account.accessToken
+
+// homeCell上子控件的字体、尺寸
+#define kScreenNameFont kFont(16)
+#define kTimeFont kFont(14.5)
+#define kSourceFont kTimeFont
+#define kTextFont kFont(16.5)
+
+#define kRetweetedScreenNameFont kScreenNameFont
+#define kRetweetedTextFont kTextFont
+
+#define kAvatarSmallWidth 40
+#define kAvatarSmallHeight kAvatarSmallWidth
+
+#define kAvatarDefaultWidth 70
+#define kAvatarDefaultHeight kAvatarDefaultWidth
+
+#define kAvatarBigWidth 100
+#define kAvatarBigHeight kAvatarBigWidth
+
+#define kVertifyImageViewWidth 15
+#define kVertifyImageViewHeight kVertifyImageViewWidth
+
+#define kMBImageViewWidth 16
+#define kMBImageViewHeight kMBImageViewWidth
+
+#define kImageMargin 1
+
+#define kMultiImageWidth (kScreenWidth - 2 * 10 - 2 * kImageMargin) / 3.0
+#define kMultiImageHeight kMultiImageWidth
+
+//#define kOnlyOneImageWidth kScreenWidth
+//#define kOnlyOneImageHeight kOnlyOneImageWidth * 0.618
+
+#define kOnlyOneImageWidth 300
+#define kOnlyOneImageHeight kOnlyOneImageWidth * 0.618
+
+//#define kTwoImageWidth (kScreenWidth - 1 * 0 - 1 * kImageMargin) / 2.0
+//#define kTwoImageHeight kTwoImageWidth * 0.618
+
+#define kTwoImageWidth (kOnlyOneImageWidth - kImageMargin) / 2.0
+#define kTwoImageHeight kTwoImageWidth
+
+// 弱引用
+#define kWeakObj(obj) __weak __typeof(obj) weak##obj = obj;
+// 强引用
+#define kStrongObj(obj) __strong __typeof(obj) obj = weak##obj;
+
+// weakSelf
+#define kWeakSelf __weak __typeof(self) weakSelf = self;
+// strongSelf
+#define kStrongSelf __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+#define ALABEL_EXPRESSION @"(<[aA].*?>.+?</[aA]>)"
+#define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
+#define EMOTION_EXPRESSION @"(\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\])"
+#define AT_EXPRESSION @"(@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30})"
+#define TOPIC_EXPRESSION @"(#[^#]+#)"
+#define URL_EXPRESSION @"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])"
+
+#define kLineSpacing 3
+
+#endif /* pchFile_pch */
